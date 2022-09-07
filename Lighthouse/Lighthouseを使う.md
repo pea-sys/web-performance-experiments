@@ -51,14 +51,13 @@ lighthouse https://airhorner.com/
 
 を意味します。
 
-ちなみに json で出力すると、サービスで読込み共有可能
-json フォーマットの場合、出力先指定なしだと標準出力になる。
+json フォーマットで実行結果を出力できますが、json の場合、出力先指定なしだと標準出力になりファイル生成されない。
 
 ```
 lighthouse https://airhorner.com/  --output json --output-path=./lighthouse-results.json
 ```
 
-そして、json 形式のパフォーマンス測定結果をレポート化してくれる[サービス](https://googlechrome.github.io/lighthouse/viewer/)が google から提供されています。  
+json 形式のパフォーマンス測定結果をレポート化してくれる[サービス](https://googlechrome.github.io/lighthouse/viewer/)が google から提供されています。  
 ページにアクセスすると次の表示になるので中央に json ファイルをドラッグオンドロップします。
 
 ![googlechrome github io_lighthouse_viewer_](https://user-images.githubusercontent.com/49807271/188835704-603df957-9f33-47b9-8405-eece36811502.png)
