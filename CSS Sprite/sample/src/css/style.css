@@ -1,0 +1,23 @@
+.icon {
+    background: url('../images/icons.min.png') no-repeat top left;
+    width: 32px;
+    height: 32px;
+}
+.icon1 {
+    background-position: 0 0;
+}
+.icon2 {
+    background-position: 0 -32px;
+}
+.icon3 {
+    background-position: 0 -64px;
+}
+.icon4 {
+    background-position: 0 -96px;
+}
+.icon5 {
+    background-position: 0 -128px;
+}
+.icon6 {
+    background-position: 0 -160px;
+}

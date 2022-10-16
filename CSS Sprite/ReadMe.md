@@ -1,0 +1,89 @@
+# CSS Sprite
+
+CSS Sprite とは.CSS でスプライト画像を扱うテクニックのことを指します。  
+スプライト画像とは複数の画像を 1 枚にまとめた画像ファイルのことです。
+javascript のバンドルのように、１つのファイルにまとめることで、http リクエストを減らす目的のために使用されます。  
+とはいえ、スプライト画像が大きくなりすぎてもパフォーマンス低下を招くので、アイコン等のサイズの小さい画像のみをスプライト画像にするというケースが多いです。  
+欠点は、画像の管理や利用の手間が増える、alt 属性が使えない点です。 HTTP プロトコルのバージョンによって、スプライト画像を使うべきかどうかの判断基準が変わる場合もあります・
+
+[手順]  
+ここではフリー素材のアイコンをスプライト画像にします。
+
+- 1.スプライト画像を生成するツールは Web 上に沢山存在します。  
+  今回はこちらを使用します。  
+  https://jcthepants.github.io/Retina-CSS-Sprite-Generator/
+
+* 2.上記 web サイトにアクセスしたら、mode を ratina から normal に変更  
+  ![1](https://user-images.githubusercontent.com/49807271/195966784-8f5a41cb-dac7-4a6d-86e5-e9f8b47b7627.png)
+
+* 3.スプライト画像にしたい画像をドラッグオンドロップするとスプライト画像と css が生成されます。  
+  スプライト画像のサイズは指定した方が良いかもしれません。  
+  画像を右クリックでダウンロードします。
+  ![jcthepants github io_Retina-CSS-Sprite-Generator_ (1)](https://user-images.githubusercontent.com/49807271/195970001-2703dec3-3402-47ea-b66b-3990e7b24b9b.png)
+
+スプライト css
+
+```css
+.icon {
+  background: url("../images/icons.png") no-repeat top left;
+  width: 32px;
+  height: 32px;
+}
+.icon1 {
+  background-position: 0 0;
+}
+.icon2 {
+  background-position: 0 -32px;
+}
+.icon3 {
+  background-position: 0 -64px;
+}
+.icon4 {
+  background-position: 0 -96px;
+}
+.icon5 {
+  background-position: 0 -128px;
+}
+.icon6 {
+  background-position: 0 -160px;
+}
+```
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>CSS Spriteのサンプル</title>
+  </head>
+  <body>
+    <div class="icon icon1"></div>
+    <div class="icon icon2"></div>
+    <div class="icon icon3"></div>
+    <div class="icon icon4"></div>
+    <div class="icon icon5"></div>
+    <div class="icon icon6"></div>
+  </body>
+</html>
+```
+
+- 4.スプライト画像を Zopfli で最適化します。
+
+```
+zopflipng.exe --iterations=15 "icons.png" "icons.min.png"
+Optimizing
+icons.png
+Input size: 4504 (4K)
+Result size: 2404 (2K). Percentage of original: 53.375%
+Result is smaller
+```
+
+- 5.css の参照パスを書き換えます。
+
+```css
+background: url("../images/icons.min.png") no-repeat top left;
+```
+
+- 6.html.index を開くと一回の http リクエストで全ての画像がダウンロードされています。
+  ![_C__Users_user_source_repos_web-performance-experiments_CSS%20Sprite_sample_src_index html](https://user-images.githubusercontent.com/49807271/195987853-5afdd0d3-9285-4438-8a8d-e0ae0ca11762.png)
