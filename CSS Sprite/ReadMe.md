@@ -4,7 +4,7 @@ CSS Sprite とは.CSS でスプライト画像を扱うテクニックのこと�
 スプライト画像とは複数の画像を 1 枚にまとめた画像ファイルのことです。
 javascript のバンドルのように、１つのファイルにまとめることで、http リクエストを減らす目的のために使用されます。  
 とはいえ、スプライト画像が大きくなりすぎてもパフォーマンス低下を招くので、アイコン等のサイズの小さい画像のみをスプライト画像にするというケースが多いです。  
-欠点は、画像の管理や利用の手間が増える、alt 属性が使えない点です。 HTTP プロトコルのバージョンによって、スプライト画像を使うべきかどうかの判断基準が変わる場合もあります・
+欠点は、画像の管理や利用の手間が増える、alt 属性が使えない点です。 HTTP プロトコルのバージョンによって、スプライト画像を使うべきかどうかの判断基準が変わる場合もあります。
 
 [手順]  
 ここではフリー素材のアイコンをスプライト画像にします。
@@ -68,8 +68,7 @@ javascript のバンドルのように、１つのファイルにまとめるこ
 </html>
 ```
 
-- 4.スプライト画像を Zopfli で最適化します。
-
+- 4.スプライト画像を Zopfli で最適化します。  
 ```
 zopflipng.exe --iterations=15 "icons.png" "icons.min.png"
 Optimizing
@@ -85,5 +84,5 @@ Result is smaller
 background: url("../images/icons.min.png") no-repeat top left;
 ```
 
-- 6.html.index を開くと一回の http リクエストで全ての画像がダウンロードされています。
-  ![_C__Users_user_source_repos_web-performance-experiments_CSS%20Sprite_sample_src_index html](https://user-images.githubusercontent.com/49807271/195987853-5afdd0d3-9285-4438-8a8d-e0ae0ca11762.png)
+- 6.html.index を開くと一回の http リクエストで全ての画像がダウンロードされています。  
+![_C__Users_user_source_repos_web-performance-experiments_CSS%20Sprite_sample_src_index html](https://user-images.githubusercontent.com/49807271/195987853-5afdd0d3-9285-4438-8a8d-e0ae0ca11762.png)
