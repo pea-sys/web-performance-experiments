@@ -68,7 +68,8 @@ javascript のバンドルのように、１つのファイルにまとめるこ
 </html>
 ```
 
-- 4.スプライト画像を Zopfli で最適化します。  
+- 4.スプライト画像を Zopfli で最適化します。
+
 ```
 zopflipng.exe --iterations=15 "icons.png" "icons.min.png"
 Optimizing
@@ -85,4 +86,64 @@ background: url("../images/icons.min.png") no-repeat top left;
 ```
 
 - 6.html.index を開くと一回の http リクエストで全ての画像がダウンロードされています。  
-![_C__Users_user_source_repos_web-performance-experiments_CSS%20Sprite_sample_src_index html](https://user-images.githubusercontent.com/49807271/195987853-5afdd0d3-9285-4438-8a8d-e0ae0ca11762.png)
+  ![_C__Users_user_source_repos_web-performance-experiments_CSS%20Sprite_sample_src_index html](https://user-images.githubusercontent.com/49807271/195987853-5afdd0d3-9285-4438-8a8d-e0ae0ca11762.png)
+
+## パフォーマンス比較
+
+スプライト CSS の有無でパフォーマンスを比較してみます。
+
+### [スプライト無]
+
+■ リクエスト
+
+- Request 1:  
+  https://aquamarine-gumption-3405c5.netlify.app/
+- Request 2:  
+  https://aquamarine-gumption-3405c5.netlify.app/css/style.css
+- Request 3:  
+  https://aquamarine-gumption-3405c5.netlify.app/images/icon1.min.png
+- Request 4:  
+  https://aquamarine-gumption-3405c5.netlify.app/images/icon2.min.png
+- Request 5:  
+  https://aquamarine-gumption-3405c5.netlify.app/images/icon3.min.png
+- Request 6:  
+  https://aquamarine-gumption-3405c5.netlify.app/images/icon4.min.png
+- Request 7:  
+  https://aquamarine-gumption-3405c5.netlify.app/images/icon5.min.png
+- Request 8:  
+  https://aquamarine-gumption-3405c5.netlify.app/images/icon6.min.png
+- Request 9:  
+  https://aquamarine-gumption-3405c5.netlify.app/favicon.ico
+
+■ ウォーターフォール
+
+![original_waterfall](https://user-images.githubusercontent.com/49807271/196561653-ea407975-ddca-4a7a-a961-663161dd81ca.png)
+
+■ メトリクス
+
+![original_metrix](https://user-images.githubusercontent.com/49807271/196561650-618444ad-5ec0-4424-abe8-bb1ca069d873.png)
+
+### [スプライト有]
+
+■ リクエスト
+
+- Request 1:  
+  https://creative-rolypoly-9d4c58.netlify.app/
+- Request 2:  
+  https://creative-rolypoly-9d4c58.netlify.app/css/style.css
+- Request 3:  
+  https://creative-rolypoly-9d4c58.netlify.app/images/icons.min.png
+- Request 4:  
+  https://creative-rolypoly-9d4c58.netlify.app/favicon.ico
+
+■ ウォーターフォール
+
+![sprite_waterfall](https://user-images.githubusercontent.com/49807271/196561657-5d22d3a1-95fd-4fba-9a62-8e897d5660b2.png)
+
+■ メトリクス
+
+![sprite_metrix](https://user-images.githubusercontent.com/49807271/196561656-b8e860aa-7f26-4dd7-b0a5-5cfb4aa49877.png)
+
+### [比較結果]
+
+並行ダウンロードが効いているおかげで大してパフォーマンスに差は出ませんでした。もうちょっと、ブラウザによって並行ダウンロードの数も異なります。まぁ、10 個位小さい画像があれば、スプライト画像にした方が良さそうです。
