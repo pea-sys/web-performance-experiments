@@ -1,0 +1,25 @@
+<html>
+
+<head>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			<!--- button1 ‚Ì click Žž‚Ìˆ— --->
+
+			$('#button1').click(function () {
+	    		$('#area1').append($('#text1').val()).append('\n');
+			});
+
+		});
+	</script>
+</head>
+
+<body>
+	<INPUT    id="text1"   type="text" value="jquery try" cols=40>
+	<button   id="button1" >OK</button>
+	</br></br>
+	<textarea id="area1"   cols=30 rows=5></textarea>
+</body>
+
+</html>
