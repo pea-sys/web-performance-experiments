@@ -4,7 +4,6 @@ whatwg に分かりやすい図があるので抜粋します。
 ![html spec whatwg org_multipage_scripting html (2)](https://user-images.githubusercontent.com/49807271/196290968-e1503b24-bcc1-483e-982d-9a184a26ee7f.png)
 
 ※今回は module 抜きで、上 3 つを WepPageTest で計測して、実態を確認します。
-favicon が 404 になっているけど、気にしない方向で。
 
 試した感想としては、基本的には body タグの最後に script タグ を置くのがベストプラクティスということになりそう。  
 defer を書かないことで HTML も軽量化できる。
