@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="preload" href="base-31m.pages.dev_app_min.css"  as="style" />
+  <link rel="stylesheet" href="base-31m.pages.dev_critical_min.css" />
+</head>
+<body>
+
+<h1>This is a heading</h1>
+<p>This is a paragraph.</p>
+<script>var cb = function() {
+var l = document.createElement('link'); l.rel = 'stylesheet';
+l.href = 'PATH_TO_COMBINED_CSS_FILE';
+var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+};
+var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+webkitRequestAnimationFrame || msRequestAnimationFrame;
+if (raf) raf(cb);
+else window.addEventListener('load', cb);</script>
+</body>
+</html>
