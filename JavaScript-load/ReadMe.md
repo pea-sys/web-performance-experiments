@@ -76,10 +76,10 @@ jquery のロード時にレンダリングブロックしているため × マ
 module 指定なし
 
 ![no-modele](https://user-images.githubusercontent.com/49807271/198829443-a0660859-3a13-4ce0-a348-684955223b07.png)
-※依存関係のあるスクリプトを並行ダウンロードしているので危ない　　
-　 script のロード時にレンダリングブロックしています
+※依存関係のあるスクリプトを並行ダウンロードしているので危ない  
+script のロード時にレンダリングブロックしています
 
 module 指定あり  
 ![module waterfall](https://user-images.githubusercontent.com/49807271/198829661-d622308c-d31a-4eb7-831a-8bce65e50af2.png)
 ※依存関係の順にロードされるので安全  
- デフォルトで defer 属性がついているので、レンダリングブロックします
+ デフォルトで defer 属性がついているので、レンダリングブロックしません
