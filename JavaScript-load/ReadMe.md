@@ -1,9 +1,8 @@
 # JavaScript のロードパターン
 
+JavaScript のロードパターンの動作を確認します。  
 whatwg に分かりやすい図があるので抜粋します。
 ![html spec whatwg org_multipage_scripting html (2)](https://user-images.githubusercontent.com/49807271/196290968-e1503b24-bcc1-483e-982d-9a184a26ee7f.png)
-
-※今回は module 抜きで、上 3 つを WepPageTest で計測して、実態を確認します。
 
 試した感想としては、基本的には body タグの最後に script タグ を置くのがベストプラクティスということになりそう。  
 defer を書かないことで HTML も軽量化できる。
@@ -69,3 +68,18 @@ jquery のロード時にレンダリングブロックしているため × マ
 - メトリクス
 
 ![last_default_matrix](https://user-images.githubusercontent.com/49807271/196464717-45a6b3a3-d6f7-450e-92f0-43664bd36847.png)
+
+## ■module
+
+- ウォーターフォール
+
+module 指定なし
+
+![no-modele](https://user-images.githubusercontent.com/49807271/198829443-a0660859-3a13-4ce0-a348-684955223b07.png)
+※依存関係のあるスクリプトを並行ダウンロードしているので危ない　　
+　 script のロード時にレンダリングブロックしています
+
+module 指定あり  
+![module waterfall](https://user-images.githubusercontent.com/49807271/198829661-d622308c-d31a-4eb7-831a-8bce65e50af2.png)
+※依存関係の順にロードされるので安全  
+ デフォルトで defer 属性がついているので、レンダリングブロックします
