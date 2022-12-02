@@ -1,0 +1,16 @@
+/*** uncss> filename: https://uncss.pages.dev/main.css ***/
+body {
+  font-family:Helvetica Neue, Helvetica, Arial;
+}
+
+h1 {
+  font-weight: normal;
+} 
+/*** uncss> filename: https://uncss.pages.dev/responsive.css ***/
+@media(max-width: 480px) {
+
+  h1 {
+    color: red;
+  }
+
+}
