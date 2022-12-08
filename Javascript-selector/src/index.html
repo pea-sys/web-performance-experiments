@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>タイトル</title>
+  </head>
+  <body>
+    <div>
+      <button onclick="MeasureGetElementByTag()">GetElementByTag</button>
+      <button onclick="MeasureSelectorAPI()">Selector API</button>
+      <ul id="list"></ul>
+    </div>
+    <script src="sample.js"></script>
+    <script>
+      function MeasureGetElementByTag() {
+        const startTime = performance.now();
+        var li = document.getElementsByTagName("li");
+        for (var i = 0; i < li.length; i++) {
+          if (i % 2 == 0) li[i].style.background = "yellow";
+        }
+        console.log(String(performance.now() - startTime));
+      }
+      function MeasureSelectorAPI() {
+        const startTime2 = performance.now();
+        var li = document.querySelectorAll("li:nth-child(odd)");
+        for (var i = 0; i < li.length; i++) {
+          li[i].style.background = "red";
+        }
+        console.log(String(performance.now() - startTime2));
+      }
+    </script>
+  </body>
+</html>
