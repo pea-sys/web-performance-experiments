@@ -1,6 +1,6 @@
 # pngquant を使ってみる
 
-pngquant は非可逆圧縮用のコマンドライン ユーティリティおよびライブラリです。
+pngquant はpngファイルの非可逆圧縮用のコマンドライン ユーティリティおよびライブラリです。
 
 - https://pngquant.org/
 - https://github.com/kornelski/pngquant  
@@ -52,7 +52,7 @@ Help を見る限りでは、lossless で減色したい場合、以下で良さ
 pngquant.exe  --speed 1  --verbose  --ext .png --force <targetfile>
 ```
 
-ただし、これだと zopfli で実行するだけのものと差異がほとんど発生しないため、
+ただし、これだと zopfli で実行するだけのものと差異がほとんど発生しないため、  
 不可逆である程度の品質を保ちたい場合、以下のようにすると良いでしょう。
 
 ```
@@ -60,8 +60,8 @@ pngquant.exe  --speed 1  --verbose  --quality 85-100 --ext .png --force <targetf
 ```
 
 まだ、検証段階なので--force --ext .png は指定しません。  
-<targetfile>は./\*.png みたいにディレクトリも対象にできます。  
-早速実験してみます。
+/\*.png でパラメータを渡すと、ディレクトリを対象に一括処理できます。  
+カラーパレット画像に対し、早速実験してみます。
 
 | 対象画像 | 減色前(KB) | 減色後(KB) | 減色+Zopfli 後(KB) |
 | -------- | ---------- | ---------- | ------------------ |
@@ -200,4 +200,4 @@ Quantized 1 image.
 ```
 
 余談：  
-MSPaint で png を編集するとビット深度が自動的に変更されるので注意。8bit 画像を編集して保存すると 24bit になります・
+MSPaint で png を編集するとビット深度が自動的に変更されるので注意。8bit 画像を編集して保存すると 24bit になります。
