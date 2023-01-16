@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "Zen Dots";
+  src: url("https://fonts.googleapis.com/css2?family=Zen+Dots") format("woff2");
+}
+h1 {
+  font-family: "Zen Dots", cursive;
+}
