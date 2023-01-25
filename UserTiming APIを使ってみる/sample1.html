@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <output id="result"></output>
+    <script>
+      while (new Date() - startMsec < 1000);
+      performance.mark("MarkStart");
+      var startMsec = new Date();
+      while (new Date() - startMsec < 2000);
+      performance.mark("MarkEnd1");
+      startMsec = new Date();
+      while (new Date() - startMsec < 1000);
+      performance.mark("MarkEnd2");
+      performance.measure("MarkEnd1-MarkStart", "MarkStart", "MarkEnd1");
+      performance.measure("MarkEnd2-MarkEnd1", "MarkEnd1", "MarkEnd2");
+      performance.measure("Now");
+    </script>
+  </body>
+</html>
