@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Navigation Type結果</title>
+  </head>
+  <body>
+  <h1>Navigation Type結果</h1>
+  <form>
+    <input type="button" id="btn" value="結果表示">
+  </form>
+  <output id="result"></output>
+  <script>
+    document.getElementById("btn").onclick = function(){
+      var msg = ["クリックかURL入力", "リロードしました", "ヒストリーを利用"];
+      var type = performance.navigation.type;  // 種類
+      document.getElementById("result").innerHTML = msg[type];
+    }
+  </script>
+  </body>
+</html>

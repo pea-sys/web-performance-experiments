@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Navigation Timing計測結果</title>
+  </head>
+  <body>
+    <h1>Navigation Timing計測結果</h1>
+    <form>
+      <input type="button" id="btn" value="結果表示" />
+    </form>
+    <output id="result"></output>
+    <script>
+      document.getElementById("btn").onclick = function () {
+        var startTime = performance.timing.navigationStart;
+        var endTime = performance.timing.domComplete;
+        var text = endTime - startTime + "ミリ秒<br>";
+        document.getElementById("result").innerHTML = text;
+      };
+    </script>
+  </body>
+</html>

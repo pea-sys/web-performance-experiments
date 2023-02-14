@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Navigation Timing計測結果(比較グラフ)</title>
+    <script src="https://www.google.com/jsapi"></script>
+  </head>
+  <body>
+    <h1>Navigation Timing計測結果(比較グラフ)</h1>
+    <form>
+      <input type="button" id="btn" value="結果表示">
+      <input type="button" id="save" value="結果を保存">
+      <input type="button" id="load" value="結果を読み出して比較">
+    </form>
+    <div id="graph"></div>
+    <div id="graph2"></div>
+    <output id="result"></output>
+    <script>
+      var timeData = [];
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(function(){
+        document.getElementById("btn").onclick = function(){
+          var pt = performance.timing;
+          var startTime = pt.navigationStart;
+          var dnsTime = pt.domainLookupEnd - pt.domainLookupStart;  // DNS処理時間
+          var tcpTime = pt.connectEnd - pt.connectStart; // TCP処理時間
+          var requestTime = pt.responseStart - pt.requestStart; // リクエスト時間
+          var responseTime = pt.responseEnd - pt.responseStart; // レスポンス時間
+          var domInteractiveTime = pt.domInteractive - pt.domLoading;  // DOM操作可能までの時間
+          var domCompleteTime = pt.domComplete - pt.domLoading; // DOM構築完了までの時間
+          var text = "DNS："+dnsTime+"ミリ秒<br>";
+          text += "TCP："+tcpTime+"ミリ秒<br>";
+          text += "Request："+requestTime+"ミリ秒<br>";
+          text += "Response："+responseTime+"ミリ秒<br>";
+          text += "DOM Interactive："+domInteractiveTime+"ミリ秒<br>";
+          text += "DOM Complete："+domCompleteTime+"ミリ秒<br>";
+          document.getElementById("result").innerHTML = text;
+          // 計測した時間を入れる
+          timeData = [dnsTime, tcpTime, requestTime, responseTime, domInteractiveTime, domCompleteTime];
+          // 円グラフを描画
+          drawPie("graph", "Navigation Timing Result (new)");
+        }
+      });
+      // 円グラフ描画
+      function drawPie(elementID, graphTitle){
+        var data = new google.visualization.DataTable();
+        data.addColumn("string", "type");
+        data.addColumn("number", "time");
+        data.addRows([
+          [ "DNS", timeData[0]],
+          [ "TCP", timeData[1]],
+          [ "Request", timeData[2]],
+          [ "Response", timeData[3]],
+          [ "DOM Interactive", timeData[4]],
+          [ "DOM Complete", timeData[5]]
+        ]);
+        var chart = new google.visualization.PieChart(document.getElementById(elementID));
+        chart.draw(data, {
+          width: 500,
+          height: 300,
+          title: graphTitle
+        });
+      }
+      // ローカルストレージに保存
+      document.getElementById("save").onclick = function(){
+        localStorage.setItem("navtime", JSON.stringify(timeData));
+        alert("ローカルストレージに保存しました");
+      }
+      // ローカルストレージから読み出し2番目の円グラフを描く
+      document.getElementById("load").onclick = function(){
+        var data = localStorage.getItem("navtime");
+        timeData = JSON.parse(data);
+        // 円グラフを描画
+        drawPie("graph2", "Navigation Timing Result (old)");
+      }
+    </script>
+  </body>
+</html>
