@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Page</title>
+  </head>
+  <body>
+    <h1>Welcome to my page!</h1>
+    <p>Here is an image:</p>
+    <!--FireFoxでしか画像切替が効かない-->
+    <!--<img
+      srcset="images/sample_150x100.jpg 150w, images/sample_300x200.jpg 300w, images/sample_600x400.jpg 600w, images/sample_1000x667.jpg 1000w"
+      sizes="(max-width: 150px) 150px,
+             (max-width: 300px) 300px,
+             (max-width: 600px) 600px,
+             1000px"
+      src="images/sample_1000x667.jpg"
+      alt="utsukushigahara"
+    />-->
+    <!--ブラウザを選ばない記法のはず-->
+    <picture>
+      <source media="(max-width: 150px)" srcset="images/sample_150x100.jpg" />
+      <source media="(max-width: 300px)" srcset="images/sample_300x200.jpg" />
+      <source media="(max-width: 600px)" srcset="images/sample_600x400.jpg" />
+      <img src="images/sample_1000x667.jpg" alt="utsukushigahara" />
+    </picture>
+  </body>
+</html>
