@@ -161,3 +161,9 @@ gifdiff.exe -q snow-man-animated-1.gif Santa-Claus-animated-1.gif
 GIF files snow-man-animated-1.gif and Santa-Claus-animated-1.gif differ
 
 ```
+
+- 6.不可逆でも良いのでサイズを削減したい場合、lossy オプションによる減色が使用できます。元々 8bit なので pngquant のような劇的な効果はありませんが、それでも 1 割から 3 割程度のサイズ削減が可能です。
+
+```
+gifsicle.exe -O3 --lossy=80 snow-man-animated-1.gif > snow-man-animated-4.gif
+```
