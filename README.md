@@ -7,3 +7,4 @@ Web パフォーマンス最適化に関するリポジトリ
 - [Fast load times](https://web.dev/fast/#prioritize-resource)
 - [WebPerfomanceSamples](https://stevesouders.com/examples/)
 - [httpvshttps](http://www.httpvshttps.com/)
+- [cookiestatus](https://www.cookiestatus.com/)
